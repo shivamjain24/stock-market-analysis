@@ -1,19 +1,7 @@
+import {fetchStockData} from './fetchStockData.js';
+import {viewDetails} from './stockStats.js';
 // Declare a global variable for the chart
 let stockChart;
-
-// Function to fetch stock data from the API
-async function fetchStockData() {
-  try {
-    const response = await fetch('https://stocksapi-uhe1.onrender.com/api/stocks/getstocksdata');
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    alert('Failed to load stock data');
-  }
-}
 
 // Function to convert Unix timestamps to human-readable dates
 function convertToDate(timestamps) {
@@ -24,10 +12,9 @@ function convertToDate(timestamps) {
 }
 
 // Function to update the chart based on the selected timeframe
-async function updateChart(timeframe) {
+async function updateChart(stockName,timeframe) {
   const data = await fetchStockData();
-  console.log(data.stocksData[0].AAPL[timeframe]);
-  const timeframeData = data.stocksData[0].AAPL[timeframe]; // Select the correct data based on timeframe
+  const timeframeData = data.stocksData[0][stockName][timeframe]; // Select the correct data based on timeframe
   
   // Convert timestamps to readable dates
   const labels = convertToDate(timeframeData.timeStamp);
@@ -78,7 +65,16 @@ async function updateChart(timeframe) {
   });
 }
 
+document.querySelectorAll('.timeline').forEach(button=>{
+  button.addEventListener('click', function() {
+    const stockName = this.getAttribute('data-stock');
+    const timeframe = this.getAttribute('data-timeframe');
+    updateChart("AAPL", timeframe);
+  });
+});
+
 // Load the initial data (e.g., 5 years) when the page is loaded
 window.onload = function() {
-  updateChart('5y');
+  updateChart('AAPL','5y');
+  viewDetails();
 };
