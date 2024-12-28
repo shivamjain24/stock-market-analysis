@@ -20,22 +20,23 @@
         </ul>
     </nav>
     <main>
-        <section id="chart">
-            <h2>Stock Data Chart</h2>
-            <div id="chart-container">
-                <canvas id="stockChart"></canvas>
-            </div>
-            <div class="button-container">
-                <button onclick="updateChart('5y')">5 Years</button>
-                <button onclick="updateChart('1y')">1 Year</button>
-                <button onclick="updateChart('3mo')">3 Months</button>
-                <button onclick="updateChart('1mo')">1 Month</button>
-              </div>
-        </section>
+        <div class="content-container">
+            <section id="chart">
+                <h2>Stock Data Chart</h2>
+                <div id="chart-container">
+                    <canvas id="stockChart"></canvas>
+                </div>
+                <div class="button-container">
+                    <button class = "timeline" data-timeframe = '5y'>5 Years</button>
+                    <button class = "timeline" data-timeframe = '1y'>1 Year</button>
+                    <button class = "timeline" data-timeframe = '3mo'>3 Months</button>
+                    <button class = "timeline" data-timeframe = '1mo'>1 Month</button>
+                </div>
+            </section>
+            <section id="info">
+            </section>
+        </div>
     </main>
-    <footer>
-        <p>&copy; 2023 Stock Market Analysis. All rights reserved.</p>
-    </footer>
-    <script src="index.js"></script>
+    <script type="module" src="index.js"></script>
 </body>
 </html>
