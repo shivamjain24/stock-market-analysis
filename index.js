@@ -1,5 +1,6 @@
 import {fetchStockData} from './fetchStockData.js';
-import {viewDetails} from './stockStats.js';
+import { viewDetails } from './stockDetails.js';
+import {viewStats} from './stockStats.js';
 // Declare a global variable for the chart
 let stockChart;
 
@@ -69,12 +70,28 @@ document.querySelectorAll('.timeline').forEach(button=>{
   button.addEventListener('click', function() {
     const stockName = this.getAttribute('data-stock');
     const timeframe = this.getAttribute('data-timeframe');
-    updateChart("AAPL", timeframe);
+    updateChart(stockName, timeframe);
   });
 });
 
 // Load the initial data (e.g., 5 years) when the page is loaded
 window.onload = function() {
   updateChart('AAPL','5y');
-  viewDetails();
+  viewStats();
+  viewDetails('AAPL');
 };
+
+setTimeout(() => {
+  const stockButton = document.querySelectorAll('.stock-info .stockName');
+  stockButton.forEach(button => {
+    button.addEventListener('click', function() {
+      const stockName = this.textContent;
+      const timeline = document.querySelectorAll('.timeline');
+      timeline.forEach(button => {
+        button.setAttribute('data-stock', stockName);
+      });
+      updateChart(stockName, '5y');
+      viewDetails(stockName);
+    });
+  });
+}, 2000);
