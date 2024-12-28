@@ -1,14 +1,12 @@
 import      { fetchStockStats } from './fetchStockData.js';
-async function viewDetails(){
+async function viewStats(){
     const data = await fetchStockStats();
     const stockStats = data.stocksStatsData;
-    console.log(stockStats);
     // Display the stock details
 
     const stockDetails = document.getElementById('info');
     stockDetails.innerHTML = '';
     stockStats.forEach(data => {
-        console.log(data);
         for (const stock in data) {
             if (stock === "_id") continue;
             const stockName = stock;
@@ -26,4 +24,4 @@ async function viewDetails(){
     });
 }
 
-export { viewDetails };
+export { viewStats };
