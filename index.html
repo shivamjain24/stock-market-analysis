@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Stock Market Analysis</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#chart">Chart</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="chart">
+            <h2>Stock Data Chart</h2>
+            <div id="chart-container">
+                <canvas id="stockChart"></canvas>
+            </div>
+            <div class="button-container">
+                <button onclick="updateChart('5y')">5 Years</button>
+                <button onclick="updateChart('1y')">1 Year</button>
+                <button onclick="updateChart('3mo')">3 Months</button>
+                <button onclick="updateChart('1mo')">1 Month</button>
+              </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Stock Market Analysis. All rights reserved.</p>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>
